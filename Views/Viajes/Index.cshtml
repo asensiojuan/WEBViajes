@@ -1,118 +1,52 @@
-﻿@{
-    ViewData["Title"] = "Viajes";
-}
+﻿@model IEnumerable<WEBViajes.Models.Viaje>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3 class="card-title mb-0">Lista de Viajes</h3>
-                    <a asp-action="Create" class="btn btn-primary">
-                        <i class="bi bi-plus"></i> Nuevo Viaje
-                    </a>
-                </div>
-                <div class="card-body">
-                    <!-- Filtros de búsqueda -->
-                    <div class="row mb-4">
-                        <div class="col-md-12">
-                            <form method="get" class="d-flex gap-2 flex-wrap">
-                                <div class="input-group me-2" style="max-width: 200px;">
-                                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                                    <input type="date" name="fechaDesde" class="form-control" placeholder="Fecha desde">
-                                </div>
-                                <div class="input-group me-2" style="max-width: 200px;">
-                                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                                    <input type="date" name="fechaHasta" class="form-control" placeholder="Fecha hasta">
-                                </div>
-                                <div class="input-group me-2" style="max-width: 200px;">
-                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                    <select name="clienteId" class="form-control">
-                                        <option value="">Todos los clientes</option>
-                                        <!-- Aquí irían las opciones de clientes -->
-                                    </select>
-                                </div>
-                                <div class="input-group me-2" style="max-width: 200px;">
-                                    <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                                    <select name="estado" class="form-control">
-                                        <option value="">Todos los estados</option>
-                                        <option value="Pendiente">Pendiente</option>
-                                        <option value="Confirmado">Confirmado</option>
-                                        <option value="Completado">Completado</option>
-                                        <option value="Cancelado">Cancelado</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-outline-primary">
-                                    <i class="bi bi-search"></i> Buscar
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Tabla de viajes -->
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Fecha</th>
-                                    <th>Cliente</th>
-                                    <th>Origen</th>
-                                    <th>Destino</th>
-                                    <th>Chofer</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model ?? Enumerable.Empty<dynamic>())
-                                {
-                                    <tr>
-                                        <td>@item.Id</td>
-                                        <td>@(item.Fecha?.ToString("dd/MM/yyyy HH:mm"))</td>
-                                        <td>@item.Cliente?.Nombre</td>
-                                        <td>@item.Origen</td>
-                                        <td>@item.Destino</td>
-                                        <td>@item.Chofer?.Nombre</td>
-                                        <td>
-                                            <span class="badge bg-@GetEstadoClass(item.Estado)">
-                                                @item.Estado
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info">
-                                                    <i class="bi bi-eye"></i>
-                                                </a>
-                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">Lista de Viajes</h2>
+    </div>
+    <div class="card-body">
+        <a asp-action="Create" class="btn btn-primary mb-3">Nuevo Viaje</a>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Chofer</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Pasajero</th>
+                        <th>KM</th>
+                        <th>Total</th>
+                        <th>Pagado</th>
+                        <th>Link de Pago</th>
+                        <th>Número de Factura</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var viaje in Model)
+                    {
+                        <tr>
+                            <td>@viaje.Fecha.ToShortDateString()</td>
+                            <td>@(viaje.Cliente?.Nombre ?? "N/A")</td>
+                            <td>@(viaje.Chofer?.Nombre ?? "N/A")</td>
+                            <td>@viaje.Origen</td>
+                            <td>@viaje.Destino</td>
+                            <td>@viaje.Pasajero</td>
+                            <td>@viaje.KM</td>
+                            <td>@viaje.Total.ToString("C")</td>
+                            <td>@(viaje.Pagado ? "Sí" : "No")</td>
+                            <td>@viaje.LinkPago</td>
+                            <td>@viaje.NumeroFactura</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@viaje.Id" class="btn btn-warning btn-sm">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@viaje.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
-@functions {
-    public string GetEstadoClass(string estado)
-    {
-        return estado?.ToLower() switch
-        {
-            "pendiente" => "warning",
-            "confirmado" => "primary",
-            "completado" => "success",
-            "cancelado" => "danger",
-            _ => "secondary"
-        };
-    }
-}

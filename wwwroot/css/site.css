@@ -17,7 +17,7 @@ body {
     color: #333;
 }
 
-/* Sidebar mejorado */
+/* Sidebar */
 .sidebar {
     width: 250px;
     position: fixed;
@@ -26,285 +26,156 @@ body {
     left: 0;
     z-index: 1000;
     background-color: #003087;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 3px 0 10px rgba(0,0,0,0.1);
-    /* Desktop: mostrar sidebar por defecto */
-    transform: translateX(0);
-    display: flex;
-    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-250px); /* Oculto por defecto */
 }
 
-/* En móvil: ocultar por defecto */
-@media (max-width: 767.98px) {
-    .sidebar {
-        transform: translateX(-250px);
+    .sidebar.show {
+        transform: translateX(0); /* Visible al togglear */
     }
 
-        .sidebar.show {
-            transform: translateX(0);
-        }
-}
-
-/* Encabezado del sidebar */
-.sidebar-header {
-    padding: 20px 15px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-/* Enlaces del sidebar */
-.sidebar .nav-link {
-    color: rgba(255,255,255,0.8);
-    padding: 12px 15px;
-    border-radius: 5px;
-    margin: 2px 8px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-    .sidebar .nav-link:hover {
-        background-color: #00205b;
+    .sidebar .nav-link {
         color: #fff;
-    }
-
-    /* Estado activo para navegación */
-    .sidebar .nav-link.active {
-        background-color: #00205b;
-        color: #fff;
-        border-left: 4px solid #fff;
-    }
-
-    /* Ícono en los nav-links */
-    .sidebar .nav-link i {
-        margin-right: 10px;
+        padding: 12px 15px;
+        border-radius: 5px;
         font-size: 1.1rem;
     }
 
-.sidebar .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #fff;
-}
+        .sidebar .nav-link:hover {
+            background-color: #00205b;
+            color: #fff;
+        }
 
-/* Contenido principal */
-.content {
-    width: 100%;
-    margin-left: 0;
-    transition: margin-left 0.3s ease-in-out;
-    background-color: #f5f6f5;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* En desktop: hacer espacio para el sidebar */
-@media (min-width: 768px) {
-    .content {
-        margin-left: 250px;
+    .sidebar .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: 600;
     }
 
-        .content.full-width {
-            margin-left: 0;
-        }
+.content {
+    width: 100%;
+    background-color: #f5f6f5;
 }
 
-/* Botón toggle mejorado */
+/* Botón toggle */
 .toggle-btn {
     position: fixed;
     top: 10px;
     left: 10px;
     z-index: 1100;
-    width: 40px;
-    height: 40px;
+    width: 24px; /* Más pequeño, como ícono */
+    height: 24px;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 4px;
+    font-size: 0.9rem; /* Tamaño del ícono */
+}
+
+/* Todas las pantallas */
+main {
+    padding-top: 40px; /* Espacio para el botón */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 50px; /* Espacio para el footer */
+    min-height: calc(100vh - 90px); /* Altura mínima menos botón y footer */
+}
+
+.container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    background-color: #f5f6f5; /* Fondo igual al body */
+}
+
+/* Estilos de formularios y botones */
+.btn-primary {
     background-color: #003087;
-    color: white;
-    border: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
+    border-color: #003087;
+    font-weight: 600;
 }
 
-    .toggle-btn:hover {
+    .btn-primary:hover {
         background-color: #00205b;
+        border-color: #00205b;
     }
 
-/* Ajuste para cuando el sidebar está visible en móvil */
-@media (max-width: 767.98px) {
-    .sidebar.show + .content .toggle-btn {
-        left: 260px;
-    }
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
-/* En desktop: mover el botón toggle */
-@media (min-width: 768px) {
-    .toggle-btn {
-        left: 260px;
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #5a6268;
     }
 
-    .content.full-width .toggle-btn {
-        left: 10px;
-    }
+.form-control, .form-select {
+    border-color: #003087;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 100%;
 }
 
-/* Page title styling */
-.page-title {
+    .form-control:focus, .form-select:focus {
+        border-color: #00205b;
+        box-shadow: 0 0 0 0.2rem rgba(0, 32, 91, 0.25);
+    }
+
+.form-label {
     font-weight: 600;
     color: #003087;
-    border-bottom: 2px solid #e9ecef;
-    padding-bottom: 8px;
-    margin-bottom: 20px;
 }
 
-/* Main content area */
-main {
-    flex: 1;
-    padding-top: 50px;
-    padding-bottom: 60px;
-}
-
-/* Estilos generales del contenedor */
-.container-fluid {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-/* Estilos del footer */
-footer {
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    background-color: #f8f9fa;
-    text-align: center;
-    padding: 10px;
-    border-top: 1px solid #dee2e6;
-    z-index: 100;
-}
-
-/* Estilos para formularios */
-form {
-    margin-bottom: 20px;
-}
-
-    form .form-group {
-        margin-bottom: 15px;
-    }
-
-    form label {
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="password"],
-    form textarea,
-    form select {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 5px;
-    }
-
-    form .btn {
-        padding: 10px 15px;
-        border: none;
-        color: white;
-        background-color: #007bff;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-        form .btn:hover {
-            background-color: #0056b3;
-        }
-
-/* Estilos para tarjetas (cards) */
-.card {
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
+.text-danger {
+    color: #dc3545 !important;
+    font-size: 0.9rem;
 }
 
 .card-header {
-    padding: 12px 20px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    background-color: #003087;
+    color: #fff;
+    font-weight: 600;
 }
 
-.card-body {
-    padding: 20px;
+.card {
+    border-color: #003087;
+    width: 100%;
+    margin: 0;
 }
 
-.card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-}
-
-.card-text {
-    font-size: 1rem;
-    color: #495057;
-}
-
-/* Estilos específicos para dispositivos móviles */
+/* Móviles específicos */
 @media (max-width: 767.98px) {
-    main {
-        padding-top: 60px;
-    }
-
-    .container-fluid {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
-
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="password"],
-    form textarea,
-    form select {
-        padding: 6px;
-        font-size: 0.9rem;
-    }
-
     .card {
-        margin-bottom: 15px;
+        border-radius: 0;
+        box-shadow: none;
     }
 
-    .card-header {
-        padding: 10px 15px;
+    .form-group {
+        margin-bottom: 20px;
     }
 
-    .card-body {
-        padding: 15px;
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 1rem;
     }
 
-    .card-title {
-        font-size: 1.1rem;
+    .row {
+        margin-left: 0;
+        margin-right: 0;
     }
 
-    .card-text {
-        font-size: 0.9rem;
-    }
-
-    .nav.flex-column {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .nav-item.mt-auto {
-        margin-top: auto;
+    .col-12 {
+        padding-left: 5px;
+        padding-right: 5px;
     }
 }
