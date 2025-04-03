@@ -1,0 +1,66 @@
+
+# Archivos y directorios generados por la compilación de .NET Core
+bin/
+obj/
+*.csproj.user
+*.pdb
+*.exe
+*.dll
+*.cache
+*.suo
+*.user
+*.sln.docstates
+
+# Carpetas de dependencias
+wwwroot/lib/
+node_modules/
+
+# Archivos de configuración local y secretos
+appsettings.json
+appsettings.*.json
+*.config
+*.secrets.json
+
+# Archivos de logs
+*.log
+logs/
+
+# Carpetas de salida de publicación
+publish/
+*.pubxml
+*.pubxml.user
+
+# Archivos temporales de Visual Studio y otros IDEs
+.vs/
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Paquetes de NuGet
+*.nupkg
+packages/
+
+# Archivos de pruebas y cobertura
+TestResults/
+*.trx
+*.coverage
+
+# Archivos de entorno virtual (si usas Python por alguna razón)
+venv/
+env/
+*.pyc
+
+# Archivos generados por el sistema operativo
+Thumbs.db
+ehthumbs.db
+
+# Carpetas de almacenamiento local (si usas bases de datos locales)
+data/
+*.mdf
+*.ldf
+
+# Ignorar archivos específicos del proyecto que no quieras versionar (opcional)
+# Por ejemplo, archivos de prueba o configuraciones personales
+# MyPersonalConfig.json

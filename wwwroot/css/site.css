@@ -1,0 +1,181 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f5f6f5;
+    color: #333;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #003087;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-250px); /* Oculto por defecto */
+}
+
+    .sidebar.show {
+        transform: translateX(0); /* Visible al togglear */
+    }
+
+    .sidebar .nav-link {
+        color: #fff;
+        padding: 12px 15px;
+        border-radius: 5px;
+        font-size: 1.1rem;
+    }
+
+        .sidebar .nav-link:hover {
+            background-color: #00205b;
+            color: #fff;
+        }
+
+    .sidebar .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+.content {
+    width: 100%;
+    background-color: #f5f6f5;
+}
+
+/* Botón toggle */
+.toggle-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    width: 24px; /* Más pequeño, como ícono */
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 0.9rem; /* Tamaño del ícono */
+}
+
+/* Todas las pantallas */
+main {
+    padding-top: 40px; /* Espacio para el botón */
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 50px; /* Espacio para el footer */
+    min-height: calc(100vh - 90px); /* Altura mínima menos botón y footer */
+}
+
+.container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    background-color: #f5f6f5; /* Fondo igual al body */
+}
+
+/* Estilos de formularios y botones */
+.btn-primary {
+    background-color: #003087;
+    border-color: #003087;
+    font-weight: 600;
+}
+
+    .btn-primary:hover {
+        background-color: #00205b;
+        border-color: #00205b;
+    }
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #5a6268;
+    }
+
+.form-control, .form-select {
+    border-color: #003087;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #00205b;
+        box-shadow: 0 0 0 0.2rem rgba(0, 32, 91, 0.25);
+    }
+
+.form-label {
+    font-weight: 600;
+    color: #003087;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+    font-size: 0.9rem;
+}
+
+.card-header {
+    background-color: #003087;
+    color: #fff;
+    font-weight: 600;
+}
+
+.card {
+    border-color: #003087;
+    width: 100%;
+    margin: 0;
+}
+
+/* Móviles específicos */
+@media (max-width: 767.98px) {
+    .card {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+        font-size: 1rem;
+    }
+
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .col-12 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}

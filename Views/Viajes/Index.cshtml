@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WEBViajes.Models.Viaje>
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">Lista de Viajes</h2>
+    </div>
+    <div class="card-body">
+        <a asp-action="Create" class="btn btn-primary mb-3">Nuevo Viaje</a>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Chofer</th>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Pasajero</th>
+                        <th>KM</th>
+                        <th>Total</th>
+                        <th>Pagado</th>
+                        <th>Link de Pago</th>
+                        <th>Número de Factura</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var viaje in Model)
+                    {
+                        <tr>
+                            <td>@viaje.Fecha.ToShortDateString()</td>
+                            <td>@(viaje.Cliente?.Nombre ?? "N/A")</td>
+                            <td>@(viaje.Chofer?.Nombre ?? "N/A")</td>
+                            <td>@viaje.Origen</td>
+                            <td>@viaje.Destino</td>
+                            <td>@viaje.Pasajero</td>
+                            <td>@viaje.KM</td>
+                            <td>@viaje.Total.ToString("C")</td>
+                            <td>@(viaje.Pagado ? "Sí" : "No")</td>
+                            <td>@viaje.LinkPago</td>
+                            <td>@viaje.NumeroFactura</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@viaje.Id" class="btn btn-warning btn-sm">Editar</a>
+                                <a asp-action="Delete" asp-route-id="@viaje.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
