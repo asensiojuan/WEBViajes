@@ -12,36 +12,62 @@
 </head>
 <body>
     <div class="d-flex flex-column min-vh-100">
-        <!-- Sidebar -->
-        <nav class="sidebar bg-primary text-white vh-100 p-3 collapse" id="sidebar">
+        <!-- Sidebar mejorado -->
+        <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <a class="navbar-brand text-white fw-bold" asp-area="" asp-controller="Home" asp-action="Index">Advance Translados</a>
+                <a class="navbar-brand text-white fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-car-front-fill me-2"></i>Advance Translados
+                </a>
             </div>
             <ul class="nav flex-column mt-4">
                 <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Viajes" asp-action="Index">Viajes</a>
+                    <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Viajes" ? "active" : "")"
+                       asp-area="" asp-controller="Viajes" asp-action="Index">
+                        <i class="bi bi-journal-text"></i>Viajes
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                    <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Clientes" ? "active" : "")"
+                       asp-area="" asp-controller="Clientes" asp-action="Index">
+                        <i class="bi bi-people-fill"></i>Clientes
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Choferes" asp-action="Index">Choferes</a>
+                    <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Choferes" ? "active" : "")"
+                       asp-area="" asp-controller="Choferes" asp-action="Index">
+                        <i class="bi bi-person-badge-fill"></i>Choferes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() != "Privacy" ? "active" : "")"
+                       asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class="bi bi-house-door-fill"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item mt-auto">
+                    <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")"
+                       asp-area="" asp-controller="Home" asp-action="Privacy">
+                        <i class="bi bi-shield-lock"></i>Privacy
+                    </a>
                 </li>
             </ul>
         </nav>
 
         <!-- Contenido principal -->
-        <div class="content flex-grow-1 position-relative">
-            <button class="btn btn-primary toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="bi bi-house-door-fill"></span>
+        <div class="content" id="content">
+            <button class="btn toggle-btn" type="button" id="sidebarToggle" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
             </button>
-            <main role="main" class="py-4 flex-grow-1">
-                @RenderBody()
+            <main role="main" class="py-4 px-3 px-md-4 flex-grow-1">
+                <div class="container-fluid px-0">
+                    <h2 class="mb-4 page-title">@ViewData["Title"]</h2>
+                    @RenderBody()
+                </div>
             </main>
 
             <footer class="border-top footer text-muted bg-light py-2">
                 <div class="container-fluid px-3">
-                    © 2025 - WEBViajes - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    © 2025 - Advance Translados - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </div>
             </footer>
         </div>
